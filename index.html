@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultor de Treinos Personalizados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Estilos customizados (mesmos do projeto anterior) */
+        #workoutResult h1,
+        #workoutResult h2,
+        #workoutResult h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+
+        #workoutResult h1 {
+            font-size: 1.8em;
+        }
+
+        #workoutResult h2 {
+            font-size: 1.5em;
+        }
+
+        #workoutResult h3 {
+            font-size: 1.2em;
+        }
+
+        #workoutResult ul,
+        #workoutResult ol {
+            list-style-position: inside;
+            margin-left: 1.5em;
+            margin-bottom: 1em;
+        }
+
+        #workoutResult li {
+            margin-bottom: 0.5em;
+        }
+
+        #workoutResult p {
+            margin-bottom: 1em;
+        }
+
+        #workoutResult strong {
+            font-weight: bold;
+        }
+
+        /* Melhoria no spinner */
+        .loader {
+            border: 6px solid #f3f3f3;
+            /* Light grey */
+            border-top: 6px solid #38bdf8;
+            /* Sky blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-gradient-to-r from-slate-900 to-slate-700 text-slate-100 min-h-screen flex flex-col items-center justify-center p-4 font-sans">
+
+    <div class="bg-slate-800 p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-2xl" id="formContainer">
+        <h1
+            class="text-3xl sm:text-4xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">
+            Consultor de Treinos Personalizados
+        </h1>
+
+        <form id="workoutForm" class="space-y-6">
+            <div>
+                <label for="objetivo" class="block text-sm font-medium text-sky-300 mb-1">Objetivo:</label>
+                <select id="objetivo" name="objetivo" required
+                    class="mt-1 block w-full bg-slate-700 border-slate-600 text-slate-100 rounded-md shadow-sm py-2.5 px-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 sm:text-sm">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="Ganhar massa muscular">Ganhar massa muscular</option>
+                    <option value="Emagrecer">Emagrecer</option>
+                    <option value="Condicionamento físico">Condicionamento físico</option>
+                    <option value="Definição muscular">Definição muscular</option>
+                    <option value="Força">Aumento de Força</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="nivel" class="block text-sm font-medium text-sky-300 mb-1">Nível:</label>
+                <select id="nivel" name="nivel" required
+                    class="mt-1 block w-full bg-slate-700 border-slate-600 text-slate-100 rounded-md shadow-sm py-2.5 px-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 sm:text-sm">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="Iniciante">Iniciante</option>
+                    <option value="Intermediário">Intermediário</option>
+                    <option value="Avançado">Avançado</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="acesso_equipamentos" class="block text-sm font-medium text-sky-300 mb-1">Acesso a
+                    Equipamentos:</label>
+                <select id="acesso_equipamentos" name="acesso_equipamentos" required
+                    class="mt-1 block w-full bg-slate-700 border-slate-600 text-slate-100 rounded-md shadow-sm py-2.5 px-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 sm:text-sm">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="Academia completa">Academia completa</option>
+                    <option value="Academia Intermediária (Tem equipamentos mas não é completo)">Academia Intermediária
+                    </option>
+                    <option value="Tenho acesso a halteres mas sem outros equipamentos">Apenas Halteres</option>
+                    <option value="Irei treinar somente com o peso do corpo">Apenas Peso do corpo</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="restricoes" class="block text-sm font-medium text-sky-300 mb-1">Restrições Físicas
+                    (Opcional):</label>
+                <textarea id="restricoes" name="restricoes" rows="3"
+                    placeholder="Ex: Problema no joelho, dor na lombar, cirurgia recente no ombro..."
+                    class="mt-1 block w-full bg-slate-700 border-slate-600 text-slate-100 rounded-md shadow-sm py-2.5 px-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 sm:text-sm"></textarea>
+                <label for="especificacao_treino" class="block text-sm font-medium text-sky-300 mb-1">Especificação do
+                    Treino (Opcional):</label>
+                <textarea id="especificacao_treino" name="especificacao_treino" rows="3"
+                    placeholder="Ex: Adaptado para jogadores de basquete"
+                    class="mt-1 block w-full bg-slate-700 border-slate-600 text-slate-100 rounded-md shadow-sm py-2.5 px-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 sm:text-sm"></textarea>
+
+            </div>
+
+            <div>
+                <button type="submit" id="submitButton"
+                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-slate-800 transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Gerar Treino
+                </button>
+            </div>
+        </form>
+
+        <div id="loading" class="hidden text-center mt-8">
+            <div class="loader"></div>
+            <p class="mt-2 text-lg text-sky-300">Gerando seu treino personalizado... Aguarde!</p>
+        </div>
+
+        <div id="errorDisplay"
+            class="hidden mt-6 p-4 bg-red-500/20 border border-red-700 text-red-200 rounded-md text-sm">
+        </div>
+
+        <div id="workoutResultContainer" class="mt-10 hidden">
+            <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-center text-sky-400">Seu Plano de Treino
+                Personalizado:</h2>
+            <div id="workoutResult"
+                class="prose prose-sm sm:prose-base prose-invert max-w-none bg-slate-700 p-4 sm:p-6 rounded-lg shadow-inner text-slate-200">
+            </div>
+
+            <div id="avisosContainer" class="mt-6 text-slate-200">
+            </div>
+
+            <div id="sugestoesContainer" class="mt-6 text-slate-200">
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                <button id="clearFormBtn"
+                    class="flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 focus:ring-offset-slate-800 transition-colors duration-150">
+                    Gerar Novo Treino
+                </button>
+            </div>
+        </div>
+    </div>
+    <article id="dietAd"
+        class="mt-8 p-6 bg-slate-700 rounded-xl shadow-2xl text-center border-2 border-sky-600 transform transition-transform duration-700 hover:scale-105 hover:border-sky-400 w-full max-w-2xl">
+        <h2 class="text-3xl font-bold text-sky-300 mb-4 animate-pulse">Ainda não tem uma dieta para acompanhar?
+        </h2>
+        <p class="text-slate-100 text-lg mb-6 leading-relaxed">Potencialize seus resultados! Um plano de treino
+            é ainda mais eficaz quando combinado com uma <strong>dieta personalizada</strong>. Crie a sua agora e alcance
+            seus objetivos mais rápido!</p>
+        <a href="#linkDouglas" target="_blank" rel="noopener noreferrer"
+            class="inline-block py-3 px-8 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+            Quero Minha Dieta Personalizada!
+        </a>
+    </article>
+
+
+    <footer class="text-center text-slate-400 mt-12 pb-4 text-xs">
+        <p>Desenvolvido por Gabriel Camargo.</p>
+        <p class="mt-1">
+            Este plano foi gerado com o auxílio da IA Gemini da Google. Consulte um profissional de educação física
+            antes de iniciar.
+        </p>
+        <p class="text-xs mt-1">
+            Tecnologia da IA fornecida pela Google.
+        </p>
+
+
+    </footer>
+
+    <script src="script.js"></script>
+
+
+    <script>
+
+        // Botão para limpar tudo
+        document.getElementById('clearFormBtn').addEventListener('click', () => {
+            document.getElementById('workoutForm').reset();
+            document.getElementById('workoutResultContainer').classList.add('hidden');
+            // A linha abaixo foi removida, pois o anúncio agora deve ser sempre visível.
+            // document.getElementById('dietAd').classList.add('hidden');
+        });
+
+    </script>
+
+</body>
+
+</html>
