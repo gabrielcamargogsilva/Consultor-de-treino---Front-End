@@ -1,8 +1,8 @@
 ### Curso Técnico de Desenvolvimento de Sistemas - Senai Itapeva
 
-# Consultor de Treinos Personalizados
+# TreinAI - Consultor de treinos personalizados
 
-Este projeto representa a **interface cliente** de um sistema que gera planos de treino personalizados com base no objetivo, nível de experiência e acesso a equipamentos do usuário. A interface foi desenvolvida utilizando **HTML**, **JavaScript** e **TailwindCSS**, com integração à [API de geração de treinos](https://github.com/seu-usuario/seu-repositorio-api).
+Este projeto representa a **interface cliente** de um sistema que gera planos de treino personalizados com base no objetivo, nível de experiência e acesso a equipamentos do usuário. A interface foi desenvolvida utilizando **HTML**, **JavaScript** e **TailwindCSS**, com integração à [API de geração de treinos](https://github.com/gabrielcamargogsilva/Consultor-de-treino---Back-End.git).
 
 ## Status do Projeto
 🚧 Em desenvolvimento
@@ -60,7 +60,7 @@ Durante o desenvolvimento desta interface, foram consolidados conhecimentos em:
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio-front.git
+   git clone https://github.com/gabrielcamargogsilva/Consultor-de-treino---Front-End.git
 
 
 2. **Abra o arquivo index.html no navegador:**
