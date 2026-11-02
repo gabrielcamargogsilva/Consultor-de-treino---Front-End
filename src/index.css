@@ -14,6 +14,8 @@
   --accent: #2536f5; /* cobalto: ação e seleção */
   --accent-strong: #1b28c9;
   --on-accent: #ffffff;
+  /* Realce de opção marcada: acento diluído no papel, opaco e sem "sujar". */
+  --accent-soft: color-mix(in oklab, var(--accent) 7%, var(--surface));
   --warn-bg: #fbf0d6;
   --warn-ink: #6b4a0b;
   --danger: #b42323;
@@ -46,6 +48,7 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-on-accent: var(--on-accent);
+  --color-accent-soft: var(--accent-soft);
   --color-warn-bg: var(--warn-bg);
   --color-warn-ink: var(--warn-ink);
   --color-danger: var(--danger);
