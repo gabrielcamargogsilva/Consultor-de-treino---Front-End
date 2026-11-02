@@ -14,13 +14,14 @@ import { Icon, LevelBars } from './Icon';
  *  - tiles: grade 2×N, ícone no topo + rótulo (equipamentos)
  */
 const layout = {
-  cards: 'flex flex-wrap gap-2',
+  // Uma coluna no celular: o nome da opção não corta em 390 px.
+  cards: 'grid gap-2 min-[640px]:grid-cols-2',
   list: 'grid gap-2',
   tiles: 'grid grid-cols-2 gap-2',
 };
 
 const optionStyle = {
-  cards: 'min-h-16 min-w-[10.5rem] flex-1 basis-[calc(50%-0.25rem)] items-center gap-3 px-3.5 py-2.5 text-sm font-medium',
+  cards: 'min-h-16 items-center gap-3 px-3.5 py-2.5 text-sm font-medium',
   list: 'items-center gap-3.5 px-4 py-3',
   tiles: 'min-h-[6.5rem] flex-col items-start justify-between gap-3 px-4 py-3.5 text-sm font-medium',
 };
