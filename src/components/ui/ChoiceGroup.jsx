@@ -23,7 +23,7 @@ const layout = {
 const optionStyle = {
   cards: 'min-h-16 items-center gap-3 px-3.5 py-2.5 text-sm font-medium',
   list: 'items-center gap-3.5 px-4 py-3',
-  tiles: 'min-h-[6.5rem] flex-col items-start justify-between gap-3 px-4 py-3.5 text-sm font-medium',
+  tiles: 'min-h-[6.5rem] flex-col items-start justify-start gap-2 px-4 py-3.5 text-sm font-medium',
 };
 
 export function ChoiceGroup({ legend, name, options, value, onChange, variant = 'cards', required }) {
@@ -74,8 +74,21 @@ export function ChoiceGroup({ legend, name, options, value, onChange, variant = 
               />
             )}
 
-            <span className="min-w-0">
-              <span className={cn('block', variant === 'list' && 'font-semibold')}>{opt.label}</span>
+            <span className="mt-1 min-w-0">
+              {variant === 'tiles' ? (
+                <>
+                  <span className={cn('block font-medium leading-tight')}>
+                    {opt.label ?? opt.value}
+                  </span>
+                  {opt.value && opt.label !== opt.value && (
+                    <span className="mt-1 block text-[11px] leading-snug text-muted">{opt.value}</span>
+                  )}
+                </>
+              ) : (
+                <span className={cn('block', variant === 'list' && 'font-semibold')}>
+                  {opt.label ?? opt.value}
+                </span>
+              )}
               {opt.description && <span className="block text-sm text-muted">{opt.description}</span>}
             </span>
           </label>

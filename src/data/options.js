@@ -19,7 +19,7 @@ export const NIVEIS = [
 ];
 
 export const EQUIPAMENTOS = [
-  { value: 'Academia completa', label: 'Academia completa', icon: 'academia' },
+  { value: 'Academia completa, com todos os equipamentos', label: 'Academia completa', icon: 'academia' },
   {
     value: 'Academia Intermediária (Tem equipamentos mas não é completo)',
     label: 'Academia Intermediária',
